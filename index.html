@@ -11,74 +11,78 @@
 
   <style>
     :root {
+      --uni-blue: #003366;
       --primary: #005fa3;
-      --secondary: #e0f0fa;
-      --text: #1a1a1a;
-      --bg: #f9f9f9;
       --accent: #0077cc;
+      --light-bg: #f9f9f9;
+      --text: #1a1a1a;
       --radius: 8px;
     }
-
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: var(--bg);
+      background: var(--light-bg);
       color: var(--text);
-      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-
+    .uni-header {
+      background: var(--uni-blue);
+      color: white;
+      font-size: 0.9rem;
+      padding: 0.4rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .uni-header img {
+      height: 24px;
+      object-fit: contain;
+    }
     header {
       background-color: var(--primary);
       color: white;
-      padding: 1.2rem 2rem;
+      padding: 1rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
     }
-
     header .logo-title {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
-
     header .logo-title img {
       height: 60px;
-      object-fit: contain;
     }
-
     header h1 {
       margin: 0;
       font-size: 1.8rem;
     }
-
     nav {
       margin-top: 0.5rem;
     }
-
     nav a {
       color: white;
-      margin-left: 1.5rem;
+      margin-left: 1.2rem;
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s;
     }
-
     nav a:hover {
       color: #cce7ff;
     }
-
     main {
+      flex: 1;
       padding: 2rem 1.5rem;
       max-width: 1100px;
-      margin: auto;
+      margin: 0 auto;
     }
-
     .section {
       margin-bottom: 3rem;
     }
-
     .section-title {
       font-size: 1.5rem;
       font-weight: 700;
@@ -86,20 +90,35 @@
       padding-left: 0.75rem;
       margin-bottom: 1rem;
     }
-
     .description {
       max-width: 850px;
       font-size: 1.1rem;
     }
-
+    .button-container {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .button-container a {
+      background-color: var(--primary);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius);
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .button-container a:hover {
+      background-color: #003f70;
+    }
     .team-container {
       display: flex;
       gap: 2rem;
       flex-wrap: wrap;
     }
-
     .member {
-      background-color: white;
+      background: white;
       border-radius: var(--radius);
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       padding: 1rem;
@@ -107,20 +126,21 @@
       text-align: center;
       transition: transform 0.3s ease;
     }
-
     .member:hover { transform: translateY(-5px); }
-
     .member img {
-      width: 100px; height: 100px;
+      width: 100px;
+      height: 100px;
       object-fit: cover;
       border-radius: 50%;
       margin-bottom: 1rem;
     }
-
-    .member h3 { margin-bottom: 0.5rem; }
-
-    .member p { font-size: 0.9rem; color: #555; }
-
+    .member h3 {
+      margin-bottom: 0.5rem;
+    }
+    .member p {
+      font-size: 0.9rem;
+      color: #555;
+    }
     .member a {
       display: block;
       font-size: 0.9rem;
@@ -128,81 +148,82 @@
       margin-top: 0.4rem;
       text-decoration: none;
     }
-
     .member a:hover { text-decoration: underline; }
-
-    .button-container {
-      margin-top: 2rem;
+    .card-grid {
       display: flex;
-      gap: 1rem;
+      gap: 2rem;
       flex-wrap: wrap;
     }
-
-    .button-container a {
-      background-color: var(--primary);
-      color: white;
-      padding: 0.6rem 1.2rem;
+    .card {
+      background: white;
       border-radius: var(--radius);
-      text-decoration: none;
-      font-weight: 500;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      transition: background 0.3s ease;
+      padding: 1.2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      flex: 1 1 300px;
     }
-
-    .button-container a:hover {
-      background-color: #003f70;
-    }
-
-    footer {
-      background: #f1f1f1;
-      padding: 1rem 2rem;
-      font-size: 0.9rem;
-      color: #333;
+    .contact-form {
       display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      border-top: 1px solid #ddd;
-      align-items: center;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 1rem auto;
     }
-
-    footer .logo-title img {
-      height: 40px;
+    .contact-form input,
+    .contact-form textarea {
+      padding: 0.8rem;
+      border-radius: var(--radius);
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
     }
-
-    .social-icons a {
-      margin-left: 1rem;
-      color: var(--primary);
-      font-size: 1.3rem;
-      transition: color 0.3s ease;
+    .contact-form button {
+      background: var(--primary);
+      color: white;
+      padding: 0.8rem 1.2rem;
+      border: none;
+      font-weight: 600;
+      border-radius: var(--radius);
+      max-width: 150px;
+      cursor: pointer;
+      transition: background 0.3s;
     }
-
-    .social-icons a:hover {
-      color: #002d4c;
+    .contact-form button:hover {
+      background: #003f70;
     }
-
-    @media (max-width: 600px) {
-      header, footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav {
-        margin-top: 1rem;
-      }
-
-      .team-container {
-        flex-direction: column;
-        align-items: center;
-      }
+    footer {
+      background: var(--uni-blue);
+      color: white;
+      padding: 1rem 1.5rem;
+      text-align: center;
+    }
+    footer a {
+      color: #80deea;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width:600px) {
+      header, .uni-header { flex-direction: column; align-items: flex-start; }
+      nav { margin-top: 0.75rem; }
+      .team-container { flex-direction: column; }
+      .card-grid { flex-direction: column; }
     }
   </style>
 </head>
-
 <body>
 
+  <!-- University Top Bar -->
+  <div class="uni-header">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/UNIWA_Logo_%28text%29.png" alt="UNIWA Logo">
+    <span>University of West Attica – Laboratory of Biosignal Acquisition &amp; Neurophysics</span>
+  </div>
+
+  <!-- Main Header -->
   <header>
     <div class="logo-title">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/UNIWA_Logo_(text).png" alt="UNIWA Logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/UNIWA_Logo_%28text%29.png" alt="UNIWA Logo">
       <h1>fNIRS Research Group</h1>
     </div>
     <nav>
@@ -215,18 +236,20 @@
   </header>
 
   <main>
+    <!-- About -->
     <section id="about" class="section">
       <div class="section-title">About the Lab</div>
       <p class="description">
-        We develop advanced classifiers and neural networks to analyze fNIRS signals for distinguishing between healthy individuals and those with Mild Cognitive Impairment (MCI). Our research includes signal preprocessing, feature extraction, and model evaluation using state-of-the-art AI techniques. Based at the Laboratory of Biosignal Acquisition & Neurophysics, University of West Attica (UNIWA).
+        We analyze fNIRS signals using advanced classifiers and neural networks to detect Mild Cognitive Impairment (MCI). Our group specializes in preprocessing, feature extraction, and AI model development at UNIWA’s Laboratory of Biosignal Acquisition & Neurophysics.
       </p>
       <div class="button-container">
         <a href="https://github.com/jovannaflor/fnirs-classifier" target="_blank"><i class="fab fa-github"></i> GitHub Repo</a>
-        <a href="#projects">View Projects</a>
-        <a href="#publications">Our Publications</a>
+        <a href="#projects">Our Projects</a>
+        <a href="#publications">Publications</a>
       </div>
     </section>
 
+    <!-- Team -->
     <section id="members" class="section">
       <div class="section-title">Team Members</div>
       <div class="team-container">
@@ -234,55 +257,72 @@
           <img src="https://github.com/zeniafragaki.png" alt="Zenia Fragaki">
           <h3>Zenia Fragaki</h3>
           <p>5th Year Student<br>MEng Biomedical Engineering</p>
-          <a href="mailto:bme20388126@uniwa.gr">bme20388126@uniwa.gr</a>
+          <a href="mailto:bme20388126@uniwa.gr">Email</a>
           <a href="https://github.com/zeniafragaki" target="_blank"><i class="fab fa-github"></i> GitHub</a>
         </div>
         <div class="member">
           <img src="https://github.com/jovannaflor.png" alt="Ioanna Floraki">
           <h3>Ioanna Floraki</h3>
           <p>4th Year Student<br>MEng Biomedical Engineering</p>
-          <a href="mailto:bme21388091@uniwa.gr">bme21388091@uniwa.gr</a>
+          <a href="mailto:bme21388091@uniwa.gr">Email</a>
           <a href="https://github.com/jovannaflor" target="_blank"><i class="fab fa-github"></i> GitHub</a>
         </div>
         <div class="member">
           <img src="https://bme.uniwa.gr/wp-content/uploads/sites/63/2019/07/image_Skouroliakou_Aikaterini-e1684138237688.jpg" alt="Dr. Skouroliakou">
           <h3>Dr. A. Skouroliakou</h3>
           <p>Assistant Professor<br>UNIWA</p>
-          <a href="mailto:kskourol@uniwa.gr">kskourol@uniwa.gr</a>
-          <a href="https://bme.uniwa.gr/en/profile/kskourol/" target="_blank">Academic Profile</a>
+          <a href="mailto:kskourol@uniwa.gr">Email</a>
+          <a href="https://bme.uniwa.gr/en/profile/kskourol/" target="_blank">Profile</a>
         </div>
       </div>
     </section>
 
+    <!-- Projects -->
     <section id="projects" class="section">
       <div class="section-title">Research Projects</div>
-      <p><strong>fNIRS Classifier:</strong> Machine learning pipeline for MCI detection using fNIRS signals (PCA, SVM, CNNs).</p>
-      <p><strong>Signal Preprocessing Framework:</strong> Artifact removal, normalization, and filtering toolkit for neurophysiological data.</p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>fNIRS Classifier</h3>
+          <p>A full ML pipeline using PCA, SVM, and CNN to classify MCI vs Healthy from prefrontal fNIRS data.</p>
+        </div>
+        <div class="card">
+          <h3>Signal Processing Toolkit</h3>
+          <p>Artifact removal, filtering, normalization, and feature engineering for biomedical time-series signals.</p>
+        </div>
+      </div>
     </section>
 
+    <!-- Publications -->
     <section id="publications" class="section">
       <div class="section-title">Publications</div>
-      <p><em>Coming soon. Stay tuned for publications in journals and conferences.</em></p>
+      <p><em>Coming soon—stay tuned for conference papers and journal articles.</em></p>
     </section>
 
+    <!-- Contact -->
     <section id="contact" class="section">
-      <div class="section-title">Contact & Lab Info</div>
-      <p><strong>Laboratory of Biosignal Acquisition & Neurophysics</strong><br>
-      Department of Biomedical Engineering<br>
-      University of West Attica (UNIWA)</p>
-      <p>Email: <a href="mailto:kskourol@uniwa.gr">kskourol@uniwa.gr</a></p>
+      <div class="section-title">Contact Us</div>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message" rows="5"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p style="text-align:center; margin-top:1rem;">
+        <strong>Email:</strong> <a href="mailto:kskourol@uniwa.gr">kskourol@uniwa.gr</a>
+        &nbsp;|&nbsp;
+        <strong>Lab:</strong> Laboratory of Biosignal Acquisition & Neurophysics, UNIWA
+      </p>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
-    <div class="logo-title">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/UNIWA_Logo_(text).png" alt="UNIWA Logo">
-      <span>© 2025 fNIRS Research Group</span>
-    </div>
-    <div class="social-icons">
-      <a href="https://github.com/jovannaflor" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-    </div>
+    <p>© 2025 UNIWA fNIRS Research Group – Designed by Zenia Fragaki &amp; Ioanna Floraki</p>
+    <p><a href="mailto:kskourol@uniwa.gr">Lab Supervisor Contact</a></p>
   </footer>
+
 </body>
 </html>
 
+ 
+   
